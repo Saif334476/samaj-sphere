@@ -47,20 +47,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCLYZcAfnBqi2nF8x6mHLeItRXFF41uPe8',
-    appId: '1:454010895762:android:9ea0800de5dff1f74ad54b',
-    messagingSenderId: '454010895762',
-    projectId: 'wallet-hunter-app',
-    storageBucket: 'wallet-hunter-app.firebasestorage.app',
+    apiKey: 'AIzaSyAQLK0uzQehzSPfSb7C_eypBupb-C9SJYI',
+    appId: '1:86234140878:android:a0b97fd8805f787c6d009f',
+    messagingSenderId: '86234140878',
+    projectId: 'samaj-sphere',
+    storageBucket: 'samaj-sphere.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDPZCA3FAwGpwWEkwrGdOY7Oxsf6PRNeyg',
-    appId: '1:454010895762:ios:53f19bbbee5113514ad54b',
-    messagingSenderId: '454010895762',
-    projectId: 'wallet-hunter-app',
-    storageBucket: 'wallet-hunter-app.firebasestorage.app',
-    iosBundleId: 'com.example.walletHunterApp',
+    apiKey: 'AIzaSyCnd5weDQEiy7M5OUD8fltCFhGUkkaH4W8',
+    appId: '1:86234140878:ios:4abf503f3190a22d6d009f',
+    messagingSenderId: '86234140878',
+    projectId: 'samaj-sphere',
+    storageBucket: 'samaj-sphere.firebasestorage.app',
+    iosBundleId: 'com.example.samajSphere',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(

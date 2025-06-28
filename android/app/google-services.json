@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "86234140878",
+    "project_id": "samaj-sphere",
+    "storage_bucket": "samaj-sphere.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86234140878:android:a0b97fd8805f787c6d009f",
+        "android_client_info": {
+          "package_name": "com.example.samaj_sphere"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQLK0uzQehzSPfSb7C_eypBupb-C9SJYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:samaj_sphere/splash_screen.dart';
+import 'features/auth/ui/registration/otp/otp_controller.dart';
 import 'features/auth/ui/registration/otp/otp_screen.dart';
 import 'features/auth/ui/registration/registration_screen.dart';
 import 'features/dashboard/dashboard.dart';
@@ -16,8 +17,9 @@ void main() async {
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+
   );
- // await dotenv.load();
+
   runApp(const MyApp());
 }
 

@@ -1,9 +1,1 @@
-{
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
-  "storage": {
-    "rules": "storage.rules"
-  }
-}
+{"firestore":{"rules":"firestore.rules","indexes":"firestore.indexes.json"},"storage":{"rules":"storage.rules"},"flutter":{"platforms":{"android":{"default":{"projectId":"samaj-sphere","appId":"1:86234140878:android:a0b97fd8805f787c6d009f","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"samaj-sphere","appId":"1:86234140878:ios:4abf503f3190a22d6d009f","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"samaj-sphere","configurations":{"android":"1:86234140878:android:a0b97fd8805f787c6d009f","ios":"1:86234140878:ios:4abf503f3190a22d6d009f"}}}}}}

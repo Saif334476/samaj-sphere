@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:samaj_sphere/features/auth/ui/registration/registration_screen.dart';
 import 'features/animated_dots.dart';
-import 'features/dashboard/dashboard.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,23 +18,78 @@ class _SplashScreenState extends State<SplashScreen> {
   late Timer _timer;
 
   @override
+
   void initState() {
     super.initState();
-    _timer = Timer(const Duration(seconds: 3), () {
+    //seedSamajAndTemples();
+    _timer = Timer(const Duration(seconds: 3), () async{
       final user = FirebaseAuth.instance.currentUser;
       if (user != null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const Dashboard()),
-        );
+
+        final userDoc = await FirebaseFirestore.instance
+            .collection('family_heads')
+            .doc(user.uid)
+            .get();
+
+        if (userDoc.exists && userDoc.data()?['isRegistrationCompleted'] == true) {
+          Get.offAllNamed('/dashboard');
+        } else {
+          Get.offAllNamed('/registration');
+        }
       } else {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const RegistrationScreen()),
-        );
+        Get.offAllNamed('/registration');
       }
     });
   }
+
+  //
+  // Future<void> seedSamajAndTemples() async {
+  //   final firestore = FirebaseFirestore.instance;
+  //
+  //   final samajs = [
+  //     "Arya Samaj",
+  //     "Brahmo Samaj",
+  //     "Prajapati Samaj",
+  //     "Prarthana Samaj",
+  //     "Ramakrishna Mission",
+  //     "Deva Samaj",
+  //     "Aligarh Movement",
+  //     "Seva Sadan Society",
+  //   ];
+  //
+  //   final temples = [
+  //     {
+  //       "name": "Shore Temple",
+  //       "location": "Mahabalipuram, Tamil Nadu",
+  //       "samajList": ["Arya Samaj", "Brahmo Samaj"]
+  //     },
+  //     {
+  //       "name": "Meenakshi Amman Temple",
+  //       "location": "Madurai, Tamil Nadu",
+  //       "samajList": ["Prarthana Samaj", "Ramakrishna Mission"]
+  //     },
+  //     {
+  //       "name": "Sri Venkateswara Temple",
+  //       "location": "Pittsburgh, USA",
+  //       "samajList": ["Arya Samaj", "Deva Samaj"]
+  //     },
+  //     {
+  //       "name": "Brihadeeswarar Temple",
+  //       "location": "Thanjavur, Tamil Nadu",
+  //       "samajList": ["Prajapati Samaj", "Brahmo Samaj"]
+  //     },
+  //   ];
+  //
+  //   for (final name in samajs) {
+  //     await firestore.collection('samajs').add({"name": name});
+  //   }
+  //
+  //   for (final temple in temples) {
+  //     await firestore.collection('temples').add(temple);
+  //   }
+  //
+  //   print("Samajs and Temples seeded successfully.");
+  // }
 
   @override
   void dispose() {
@@ -79,7 +136,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
               // App Title
               Text(
-                "Samaj Sphere Tree",
+                "Samaj Sphere",
                 style: theme.textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: theme.colorScheme.primary,
@@ -90,7 +147,7 @@ class _SplashScreenState extends State<SplashScreen> {
               const SizedBox(height: 16),
 
 
-               BouncingDots(),
+               const BouncingDots(),
 
               const SizedBox(height: 20),
 
