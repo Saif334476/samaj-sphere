@@ -17,6 +17,7 @@ class FamilyTreeController extends GetxController {
   void onInit() {
     super.onInit();
     fetchFamilyTree();
+    _fetchHeadData();
   }
 
   @override
@@ -25,7 +26,29 @@ class FamilyTreeController extends GetxController {
     _membersSubscription?.cancel();
     super.onClose();
   }
-
+  Future<void> _fetchHeadData() async {
+    try {
+      final docSnapshot = await _firestore.collection('family_members').doc(FirebaseAuth.instance.currentUser?.uid).get();
+      if (docSnapshot.exists) {
+        head.value = docSnapshot.data()!;
+      } else {
+        head.value = {
+          "name": "You",
+          "relation": "Head",
+          "profilePicUrl": "",
+        };
+      }
+    } catch (e) {
+      print('Error fetching head data: $e');
+      head.value = {
+        "name": "You",
+        "relation": "Head",
+        "profilePicUrl": "",
+      };
+    } finally {
+      isLoading.value = false;
+    }
+  }
   Future<void> fetchFamilyTree() async {
     isLoading.value = true;
 
@@ -40,10 +63,11 @@ class FamilyTreeController extends GetxController {
           head.value = {
             "name": headDoc['name'] ?? '',
             "relation": "Head",
-            "profilePicUrl": headDoc['profilePicUrl'] ?? '',
+            "profilePicUrl": headDoc['avatarPath'] ?? '',
           };
         } else {
           head.value = null;
+          print("head value is null");
         }
       });
       _membersSubscription = _firestore.collection('family_heads').doc(uid).collection("members").snapshots().listen((membersQuery) {
